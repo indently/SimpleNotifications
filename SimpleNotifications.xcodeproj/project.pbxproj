@@ -54,8 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				7A6D2AEF2756BFF500E5D575 /* SimpleNotificationsApp.swift */,
-				7A6D2AF12756BFF500E5D575 /* ContentView.swift */,
-				7A6D2AFD2756C57300E5D575 /* Notifications.swift */,
+				7A6D2B002757616500E5D575 /* Views */,
+				7A6D2AFF2757615400E5D575 /* Handlers */,
 				7A6D2AF32756BFF600E5D575 /* Assets.xcassets */,
 				7A6D2AF52756BFF600E5D575 /* Preview Content */,
 			);
@@ -68,6 +68,22 @@
 				7A6D2AF62756BFF600E5D575 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7A6D2AFF2757615400E5D575 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D2AFD2756C57300E5D575 /* Notifications.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		7A6D2B002757616500E5D575 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D2AF12756BFF500E5D575 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

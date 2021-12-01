@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-class Notifications {
+class NotificationHandler {
     func askPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
@@ -19,24 +19,24 @@ class Notifications {
         }
     }
     
-    func sendNotification(date: Date, type: String) {
+    func sendNotification(date: Date, type: String, timeInterval: Double = 10, title: String, body: String) {
         if type == "date" {
             let dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute], from: date)
 
             let dateTrigger = UNCalendarNotificationTrigger(
                      dateMatching: dateComponents, repeats: false)
             
-            createNotification(trigger: dateTrigger)
+            createNotification(title: title, body: body, trigger: dateTrigger)
         } else if type == "time" {
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-            createNotification(trigger: trigger)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            createNotification(title: title, body: body, trigger: trigger)
         }
     }
     
-    func createNotification(trigger: UNNotificationTrigger) {
+    func createNotification(title: String, body: String, trigger: UNNotificationTrigger) {
         let content = UNMutableNotificationContent()
-        content.title = "Epic Notification!"
-        content.subtitle = "This came from an epic channel!"
+        content.title = title
+        content.body = body
         content.sound = UNNotificationSound.default
 
         // Create a request
