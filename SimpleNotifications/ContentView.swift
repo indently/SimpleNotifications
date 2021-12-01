@@ -23,7 +23,7 @@ struct ContentView: View {
                 notify.askPermission()
             }
             Button("Schedule notification") {
-                notify.sendNotification(date:selectedDate)
+                notify.sendNotification(date:selectedDate, type: "date")
                 
             }.tint(.orange)
         }

@@ -19,27 +19,30 @@ class Notifications {
         }
     }
     
-    func sendNotification(date: Date) {
+    func sendNotification(date: Date, type: String) {
+        if type == "date" {
+            let dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute], from: date)
+
+            let dateTrigger = UNCalendarNotificationTrigger(
+                     dateMatching: dateComponents, repeats: false)
+            
+            createNotification(trigger: dateTrigger)
+        } else if type == "time" {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            createNotification(trigger: trigger)
+        }
+    }
+    
+    func createNotification(trigger: UNNotificationTrigger) {
         let content = UNMutableNotificationContent()
         content.title = "Epic Notification!"
         content.subtitle = "This came from an epic channel!"
         content.sound = UNNotificationSound.default
-        
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        
-        // DATE TRIGGER
-        let dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute], from: date)
 
-        // Create the trigger as a repeating event.
-        let dateTrigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: false)
+        // Create a request
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: dateTrigger)
-
-        // add our notification request
+        // Add the notification request
         UNUserNotificationCenter.current().add(request)
     }
-    
 }
