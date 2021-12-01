@@ -13,10 +13,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            
-            Button("Request permissions") {
-                notify.askPermission()
-            }
             Spacer()
             Button("Send notification in 5 seconds") {
                 notify.sendNotification(
@@ -35,10 +31,15 @@ struct ContentView: View {
                     body: "This notification is a reminder that you added a date. Tap on the notification to see more.")
             }.tint(.orange)
             Spacer()
+            Text("Not working?")
+                .foregroundColor(.gray)
+                .italic()
+            Button("Request permissions") {
+                notify.askPermission()
+            }
         }
         .padding()
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
