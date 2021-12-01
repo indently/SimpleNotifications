@@ -13,19 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            
-            DatePicker("Pick a date", selection: $selectedDate)
-            Button("Submit date") {
-                print("\(selectedDate)")
-            }
-                
             Button("Request permissions") {
                 notify.askPermission()
             }
+            Spacer()
+            DatePicker("Pick a date:", selection: $selectedDate, in: Date()...)
             Button("Schedule notification") {
                 notify.sendNotification(date:selectedDate, type: "date")
                 
             }.tint(.orange)
+            Spacer()
         }
         .padding()
     }
